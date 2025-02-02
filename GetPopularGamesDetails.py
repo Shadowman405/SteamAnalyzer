@@ -1,7 +1,6 @@
 import requests
 import json
 import time
-import datetime
 import os
 import pandas as pd
 from sqlalchemy import create_engine, Column, Integer, DateTime, String, Boolean, ARRAY, VARCHAR
@@ -10,6 +9,7 @@ from sqlalchemy.sql import func
 from sqlalchemy.orm import sessionmaker
 from GetPopularGames import get_popular_games
 
+# №3 DAG
 with open('D:/steam.txt', 'r') as file:
     steam_key = file.readline().strip()
 

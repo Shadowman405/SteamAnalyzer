@@ -8,6 +8,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Column, Integer, DateTime, create_engine
 from sqlalchemy.sql import func
 
+# №1 DAG
 with open('D:/steam.txt', 'r') as file:
     steam_key = file.readline().strip()
 
