@@ -5,11 +5,23 @@ with open('D:/steam.txt', 'r') as file:
 
 API_KEY = steam_key
 
+
 def get_popular_games():
     url = f"https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/?key={API_KEY}"
     response = requests.get(url)
     data = response.json()
     return data['response']['ranks']
 
+
 popular_games = get_popular_games()
-print(popular_games[:10])
+
+
+def get_game_details(app_id):
+    url = f"https://store.steampowered.com/api/appdetails?appids={app_id}"
+    response = requests.get(url)
+    data = response.json()
+    return data[str(app_id)]['data']
+
+
+top1_details = get_game_details(popular_games[1]['appid'])
+print(top1_details)
