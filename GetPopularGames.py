@@ -10,21 +10,15 @@ def get_popular_games():
     url = f"https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/?key={API_KEY}"
     response = requests.get(url)
     data = response.json()
-    return data['response']['ranks']
+    return data
+    #return data['response']['ranks']
 
-
-popular_games = get_popular_games()
-top1_game_id = popular_games[1]['appid']
 
 def get_game_details(app_id):
     url = f"https://store.steampowered.com/api/appdetails?appids={app_id}"
     response = requests.get(url)
     data = response.json()
     return data[str(app_id)]['data']
-
-
-top1_details = get_game_details(top1_game_id)
-print(top1_details)
 
 
 def get_current_players(app_id):
@@ -34,5 +28,10 @@ def get_current_players(app_id):
     return data['response']['player_count']
 
 
-top1_current_players = get_current_players(top1_game_id )
-print(top1_current_players)
+popular_games = get_popular_games()
+
+for game in popular_games[:5]:
+    app_id = game['appid']
+    details = get_game_details(app_id)
+    current_players = get_current_players(app_id)
+
